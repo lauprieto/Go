@@ -1,23 +1,24 @@
 pipeline {
     agent any
-
+    environment {
+        GO111MODULE = 'on'
+    }
     stages {
         stage('Checkout') {
             steps {
                 git 'https://github.com/lauprieto/Go.git'
             }
         }
-
         stage('Build') {
             steps {
-                sh 'go build ./...'
+                sh 'go build -v ./...'
             }
         }
-
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                sh 'go test ./...'
+                sh 'go test -v ./...'
             }
         }
     }
 }
+

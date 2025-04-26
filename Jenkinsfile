@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/lauprieto/Go.git'
+                git  'https://github.com/lauprieto/Go.git'
             }
         }
 

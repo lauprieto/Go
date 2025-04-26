@@ -1,22 +1,17 @@
 pipeline {
-    agent any
+    agent { label 'agent3' }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/lauprieto/Go.git'
+                git branch: 'main', url: 'https://github.com/lauprieto/Go.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'go build ./...'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh 'go test ./...'
+                sh 'go mod tidy' 
+                sh 'go build -o app ./cmd/app'
             }
         }
     }

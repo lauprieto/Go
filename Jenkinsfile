@@ -3,12 +3,20 @@ pipeline {
 
     environment {
         GO111MODULE = 'on'
+        PATH = "/usr/local/go/bin:${env.PATH}" // Asegura que se use la versión correcta de Go
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git  'https://github.com/lauprieto/Go.git'
+                checkout {
+                    scm {
+                        git {
+                            branch 'master'
+                            url 'https://github.com/lauprieto/Go.git'
+                        }
+                    }
+                }
             }
         }
 
@@ -31,5 +39,3 @@ pipeline {
         }
     }
 }
-
-

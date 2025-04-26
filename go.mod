@@ -1,3 +1,1 @@
-module github.com/lauprieto/Go
-
-go 1.22
+go mod init github.com/lauprieto/Go
